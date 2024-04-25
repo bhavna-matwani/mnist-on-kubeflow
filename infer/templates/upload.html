@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image</title>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h1>Upload Image of the Digit from the MNIST</h1>
+    <div>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label style="color:blue;font-size:36px;">Select image</label>
+          <br />
+          <br />
+          <br />
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="image" id="image">
+          </div>
+          <br />
+          <br />
+          <button type="submit" class="btn" style="color:red; border: none;">Upload</button>
+      </form>
+    </div>
+
+      
+      <br />
+      <br />
+      <br />
+      <div>
+      {% if inf_status %}
+        <p>Uploaded Image</p>
+        <img src="{{ url_for('send_uploaded_file', filename=uploaded_image) }}" />
+        <br />
+        <br />
+        {{inf_status}}
+  
+      {% endif %}
+    </div>
+  </div>
+
+</body>
+</html>
