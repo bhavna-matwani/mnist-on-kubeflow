@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: train-container
+        image: bhavnamatwani/mnist_train
+        volumeMounts:
+        - mountPath: "./train"
+          name: model-per-volume
+      volumes:
+      - name: model-per-volume 
+        persistentVolumeClaim:
+          claimName: data-pvc
+      restartPolicy: Never

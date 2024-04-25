@@ -14,13 +14,9 @@ spec:
     spec:
       containers:
       - name: inference-container
-        image: bhavnamatwani/myrepo:mnistinfer
+        image: bhavnamatwani/mnist_infer
         ports:
         - containerPort: 8000
         volumeMounts:
         - name: model-volume
           mountPath: /model
-      volumes:
-      - name: model-volume
-        persistentVolumeClaim:
-          claimName: model-pvc  
