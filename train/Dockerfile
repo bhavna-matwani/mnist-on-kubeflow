@@ -1,20 +1,19 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM ubuntu:18.04
 
-# Set up a working folder
+RUN apt-get -s autoclean
+
+RUN apt-get update
+
+RUN  apt-get install -y \
+    python3.6 python3-dev gcc \
+    ca-certificates curl
+
+RUN curl -fsSL https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3.6
+
 WORKDIR /app
+ADD . /app
 
-# Install necessary system packages using Debian's package manager
-RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --upgrade pip setuptools
+RUN pip3 --no-cache-dir install -r requirements.txt
 
-# Copy the Python requirements file and install Python dependencies
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the Python script into the container at /app
-COPY main.py /app/
-
-# Command to run the application
-CMD ["python", "main.py"]
+CMD [ "python3", "main.py"]
