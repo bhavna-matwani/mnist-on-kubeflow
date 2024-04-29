@@ -9,10 +9,10 @@ spec:
       - name: train-container
         image: bhavnamatwani/mnist_train
         volumeMounts:
-        - mountPath: "./train"
+        - mountPath: "/model_ckpt"
           name: model-per-volume
       volumes:
-      - name: model-per-volume 
+      - name: model-per-volume
         persistentVolumeClaim:
-          claimName: data-pvc
+          claimName: pvc
       restartPolicy: Never

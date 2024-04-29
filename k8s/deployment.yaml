@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: inference-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: inference
@@ -19,4 +19,8 @@ spec:
         - containerPort: 8000
         volumeMounts:
         - name: model-volume
-          mountPath: /model
+          mountPath: "/model_ckpt"
+      volumes:
+      - name: model-volume
+        persistentVolumeClaim:
+          claimName: pvc

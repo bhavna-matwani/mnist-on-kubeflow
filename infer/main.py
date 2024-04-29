@@ -44,7 +44,7 @@ def transformer(input):
 
 def inference(input):
     model = Net()
-    model.load_state_dict(torch.load('../train/mnist_cnn.pt'))
+    model.load_state_dict(torch.load('/model_ckpt/mnist_cnn.pt'))
     model.eval()
     output = model(input).squeeze().argmax().item()
     return output
