@@ -8,6 +8,7 @@ spec:
       containers:
       - name: train-container
         image: bhavnamatwani/mnist_train
+        imagePullPolicy: Always
         volumeMounts:
         - mountPath: "/model_ckpt"
           name: model-per-volume

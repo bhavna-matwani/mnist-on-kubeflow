@@ -15,12 +15,13 @@ spec:
       containers:
       - name: inference-container
         image: bhavnamatwani/mnist_infer
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         volumeMounts:
-        - name: model-volume
+        - name: model-per-volume
           mountPath: "/model_ckpt"
       volumes:
-      - name: model-volume
+      - name: model-per-volume
         persistentVolumeClaim:
           claimName: pvc
